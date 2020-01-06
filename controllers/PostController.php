@@ -23,8 +23,7 @@ class PostController
         $posts[] = $post;
 
         View::setTemplate("post_list");
-        View::bindVariable("title", $posts[]);
-        View::bindVariable("content", $posts[]);
+        View::bindVariable("posts", $posts);
         View::display();
     }
 
