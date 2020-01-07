@@ -25,7 +25,12 @@ if (isset($_GET['page'])) {
 switch ($page) {
     case 'post-list':
         // routage ver PageController
-        PostController::ListAction();
+            PostController::ListAction();    
+        break;
+
+        case 'post-insert':
+            PostController::PostAction($_POST['title'], $_POST['text']);
+            PostController::ListAction();
         break;
     default:
         //todo: ERREUR 404

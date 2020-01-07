@@ -16,7 +16,13 @@ class PostController
         
         View::setTemplate("post_list");
         View::bindVariable("posts", $posts);
+        View::bindVariable("title", "Mon site");
         View::display();
+    }
+
+    public static function PostAction($title, $text)
+    {
+        Post::insertPost($title, $text);
     }
 
 }

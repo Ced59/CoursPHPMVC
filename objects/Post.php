@@ -16,4 +16,9 @@ class Post
     {
         return PostDao::getAll();
     }
+
+    public static function insertPost($title, $text)
+    {
+        PostDao::insertPost($title, $text);
+    }
 }
