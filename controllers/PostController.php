@@ -4,7 +4,7 @@ namespace Valarep\controllers;
 
 use Valarep\View;
 use Valarep\objects\Post;
-use Valarep\objects\Dao;
+
 
 class PostController
 {
@@ -23,10 +23,12 @@ class PostController
         $post->content = "Contenu 2";
         $posts[] = $post;
 
+
+        $items = Post::gatAll();
+        var_dump($items);
+
         
-        $pdo = Dao::open();
-        var_dump($pdo);
-        $pdo = Dao::close();
+ 
 
         View::setTemplate("post_list");
         View::bindVariable("posts", $posts);
