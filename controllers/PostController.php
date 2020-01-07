@@ -16,6 +16,7 @@ class PostController
         
         View::setTemplate("post_list");
         View::bindVariable("posts", $posts);
+        View::bindVariable("title", "Mon site");
         View::display();
     }
 
