@@ -23,4 +23,26 @@ class PostDao
 
         return $items;
     }
+
+
+    public static function insertPost($title, $text)
+    {
+        $dbh = Dao::open();
+
+        $query = "INSERT INTO `post` (title, content) VALUES (:title, :text);";
+
+        $sth = $dbh->prepare($query); // PDOStatment
+        $sth->bindParam(":title", $title);
+        $sth->bindParam(":text", $text);
+        $nbrows = $sth->execute();
+
+        if ($nbrows != 1)
+        {
+            echo "oups...";
+            var_dump($query);
+            die();
+        }
+
+        Dao::close();
+    }
 }

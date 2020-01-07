@@ -20,4 +20,9 @@ class PostController
         View::display();
     }
 
+    public static function PostAction($title, $text)
+    {
+        Post::insertPost($title, $text);
+    }
+
 }
