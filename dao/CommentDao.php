@@ -4,18 +4,19 @@ namespace Valarep\dao;
 
 use \PDO;
 
-class PostDao
+class CommentDao
 {
-    public static function getAll()
+    public static function getComments($id_post)
     {
         $dbh = Dao::open(); //Database Handler
         
-        $query = "SELECT * FROM `post` ORDER BY `id` DESC;";
+        $query = "SELECT * FROM `comment` WHERE `id_post` = :id_post;";
         $sth = $dbh->prepare($query); // PDOStatment
+        $sth->bindParam("id_post", $id_post);
         $sth->execute();
         $sth->setFetchMode(
             PDO::FETCH_CLASS, //On veut des objets
-            "Valarep\\objects\\Post" //La classe Post complétement qualifiée
+            "Valarep\\objects\\Comment" //La classe Comment complétement qualifiée
         );
         $items = $sth->fetchAll();
 
@@ -25,15 +26,15 @@ class PostDao
     }
 
 
-    public static function insertPost($title, $text)
+    public static function insertComment($id_post, $text)
     {
         $dbh = Dao::open();
 
-        $query = "INSERT INTO `post` (title, content) VALUES (:title, :text);";
+        $query = "INSERT INTO `comment` (content, id_post) VALUES (:content, :id_post);";
 
         $sth = $dbh->prepare($query); // PDOStatment
-        $sth->bindParam(":title", $title);
-        $sth->bindParam(":text", $text);
+        $sth->bindParam(":content", $text);
+        $sth->bindParam(":id_post", $id_post);
         $nbrows = $sth->execute();
 
         if ($nbrows != 1)

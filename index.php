@@ -4,6 +4,7 @@ namespace Valarep;
 
 // inclusion des classes externes
 use Valarep\controllers\PostController;
+use Valarep\controllers\CommentController;
 
 // début de l'application web
 
@@ -32,6 +33,10 @@ switch ($page) {
             PostController::PostAction($_POST['title'], $_POST['text']);
             PostController::ListAction();
         break;
+
+        case 'comment-insert':
+            CommentController::CommentAction($_GET['idPost'], $_POST['comment']);
+            PostController::ListAction();
     default:
         //todo: ERREUR 404
         break;

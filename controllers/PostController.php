@@ -10,9 +10,15 @@ class PostController
 {
     public static function ListAction()
     {
+        // Route : /
+        // Route : /posts
         // Liste des publications
         $posts = [];
         $posts = Post::getAll();
+
+
+
+    
         
         View::setTemplate("post_list");
         View::bindVariable("posts", $posts);
@@ -22,6 +28,9 @@ class PostController
 
     public static function PostAction($title, $text)
     {
+
+        // Route: /post/insert
+
         Post::insertPost($title, $text);
     }
 
