@@ -10,7 +10,7 @@ class CommentDao
     {
         $dbh = Dao::open(); //Database Handler
         
-        $query = "SELECT * FROM `comment` WHERE `id_post` = :id_post;";
+        $query = "SELECT * FROM `comment` WHERE `id_post` = :id_post ORDER BY `id` DESC;";
         $sth = $dbh->prepare($query); // PDOStatment
         $sth->bindParam("id_post", $id_post);
         $sth->execute();
@@ -41,6 +41,7 @@ class CommentDao
         {
             echo "oups...";
             var_dump($query);
+            echo $sth->errorInfo()[2];
             die();
         }
 

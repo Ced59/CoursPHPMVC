@@ -1,4 +1,4 @@
-<form action="?page=post-insert" method="POST" class="form-group">
+<form action="<?=$path;?>/post/insert" method="POST" class="form-group">
     <label for="title">Entrez le titre</label>
     <input type="text" name="title" id="title" class="form-control" required>
     <label for="title">Entrez le texte</label>

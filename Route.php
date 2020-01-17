@@ -20,7 +20,7 @@ final class Route
      * @param string $name         name (default:"")
      * @param string $requirements requirements(default:[])
      */
-    public function __construct($uri, $controller, $action="defaultAction", $name="", $requirements = [])
+    public function __construct($uri, $controller, $action="route", $name="", $requirements = [])
     {
         $this->_uri = $uri;
         $this->_controller = $controller;
@@ -275,7 +275,7 @@ final class Route
      */
     public function execute()
     {
-        $classname = "gsb_prospects\\controller\\" . $this->_controller;
+        $classname = "Valarep\\controllers\\" . $this->_controller;
         $controller = new $classname();
 
         call_user_func_array(array($controller, $this->_action), $this->_parameters);
