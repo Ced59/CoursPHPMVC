@@ -17,16 +17,16 @@ $router = new Router();
 $router->addRoute(new Route("/", "PostController"));
 $router->addRoute(new Route("/posts", "PostController"));
 $router->addRoute(new Route("/post/{*}", "PostController"));
+$router->addRoute(new Route("/comment/{*}", "CommentController"));
 
 $route = $router->findRoute();
 
-if ($route)
-{
-    $route->execute();
-}
-else
-{
-    // Erreur 404
 
+
+if ($route) {
+    $route->execute();
+} else {
+
+    // Erreur 404
     echo "Page Not Found";
 }
