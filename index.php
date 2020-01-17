@@ -13,31 +13,20 @@ require_once "vendor/autoload.php";
 
 
 
+$router = new Router();
+$router->addRoute(new Route("/", "PostController"));
+$router->addRoute(new Route("/posts", "PostController"));
+$router->addRoute(new Route("/post/{*}", "PostController"));
 
-// récupération de la variable transmise par GET
-// est ce qu'on a cliqué sur le navbar ?
-if (isset($_GET['page'])) {
-    $page = $_GET['page'];
-} else {
-    // page par défaut
-    $page = 'post-list';
+$route = $router->findRoute();
+
+if ($route)
+{
+    $route->execute();
 }
+else
+{
+    // Erreur 404
 
-switch ($page) {
-    case 'post-list':
-        // routage ver PageController
-            PostController::ListAction();    
-        break;
-
-        case 'post-insert':
-            PostController::PostAction($_POST['title'], $_POST['text']);
-            PostController::ListAction();
-        break;
-
-        case 'comment-insert':
-            CommentController::CommentAction($_GET['idPost'], $_POST['comment']);
-            PostController::ListAction();
-    default:
-        //todo: ERREUR 404
-        break;
+    echo "Page Not Found";
 }
